@@ -44,7 +44,7 @@ class Cryptoblockchain {
 
 	addNewBlock(newBlock) {
 		newBlock.previoushash = this.obtainLatestBlock().hash;
-		newBlock.proofofWork(this.difficulty);
+		newBlock.proofofwork(this.difficulty);
 		this.blockchain.push(newBlock);
 	}
 
