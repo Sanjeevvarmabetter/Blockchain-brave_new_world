@@ -1,13 +1,13 @@
-//first we need to write the solidity version
-
+//this contract is deployed on the sepolia test network
 // SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.19 ;
 
 contract Simplestorage {
     //basic types : boolean, uint,int,address,bytes
     uint256 internal favoratenumber; //default 0
 
-    //arrays and structs
+    //array 
 
     // uint256[] listoffavnumbers; 
 
@@ -19,8 +19,7 @@ contract Simplestorage {
 
     Person[] public listofpeople;
 
-
-
+    mapping(string => uint256) public nametofavnumber;
 
     // Person public myfriend = Person(7,"sanjeev");
 
@@ -44,9 +43,14 @@ contract Simplestorage {
         listofpeople.push(Person(_favoratenumber,_name));
     }
 
+ 
+    // calldata, memory, storage
+    function addperson(string calldata _name,uint256 _favoritenumber) public  {
+        listofpeople.push( Person(_favoritenumber,_name));
+        nametofavnumber[_name] = _favoritenumber;
 
-
-
-
-
+    }
+    
 }
+
+
