@@ -1,5 +1,7 @@
 //first we need a block 
 
+const sha256 = require('js-sha256')
+
 class Block {
     constructor(index,timestamp,data,prevhash = '') {
         this.index = index;
@@ -10,7 +12,7 @@ class Block {
     }
 
     calculateHash() {
-        return SHA256(this.index + this.prevhash + this.data + this.timestamp)
+        return sha256(this.index + this.prevhash + this.data + this.timestamp)
     }
 }
 
@@ -25,6 +27,7 @@ class Blockchain {
         this.diff = 2;
         this.validators = [];
     }
+
 
     invokegenesis() {
 
@@ -44,11 +47,34 @@ class Blockchain {
         //now we need to push  this to the chain    
 
         this.chain.push(newblock);
+
+    }
+
+
+    validateblockwith_proof_of_stake(data) {
+        const newblock = new Block(this.chain.length+1,new Date().toISOString(),data,this.getlatestblock().hash);
+
+        //here we need to select a validator randomly based on stake
+
+        const validatorlength = Math.floor(Math.random() * this.validators.length)
+
+        const validator = this.validators[validatorlength];
+
+        console.log("${validator} created this block");
+
+        this.chain.push(newblock);
     }
 
 
 }
-    
+
+
+//driver code
+
+
+const hell = new Blockchain();
+
+
 
 //this contains validatos
 
