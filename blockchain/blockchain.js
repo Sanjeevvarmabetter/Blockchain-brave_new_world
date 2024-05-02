@@ -59,7 +59,7 @@ class Cryptoblockchain {
 				return false;
 			}
 
-			if(currentblock.previoushash !== precedingblock.hash) {
+			if(currentblock.previoushash !== previousblock.hash) {
 				return false;
 			}
 		return true;
