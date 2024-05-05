@@ -14,6 +14,8 @@ contract Raffle {
     address[] private players; 
 
 
+    event enteredRaffle(address indexed player);
+
     constructor(uint256 EnterFee){ 
     enterFee = EnterFee;
     }
@@ -35,6 +37,7 @@ contract Raffle {
 
         players.push(payable(msg.sender)); //this will push
 
+        emit enteredRaffle(msg.sender);
 
 
 
