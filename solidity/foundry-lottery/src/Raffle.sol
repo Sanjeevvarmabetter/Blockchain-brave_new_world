@@ -9,10 +9,13 @@ contract Raffle {
     error notenoughEth();
 
     uint256 private immutable enterFee;
-
+    uint256 private immutable lottery_interval;
+    uint256 private lasttimestamp;
     //use a dynamic array for storing the users
     address[] private players; 
 
+
+    // EVENTS
 
     event enteredRaffle(address indexed player);
 
@@ -39,16 +42,31 @@ contract Raffle {
 
         emit enteredRaffle(msg.sender);
 
-
-
-
-
     }
 
+    // get a random winner
+    // use the random number to pick a player
+    // be automatically called  
+
+    
     function pickWinner() public {
+            //check if some time has passed
 
+        //to check
+
+        // to get the current time
+        // the time has to be greater than lottery_interval
+
+
+        if(block.timestamp - lasttimestamp < lottery_interval) {
+            revert();
+        }
     }
 
+
+        //now we need to get a random number
+        
+    
     //getter
 
     function getEnterFee() external view returns (uint256) {
