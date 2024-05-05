@@ -1,0 +1,13 @@
+this code is to create a lottery system
+
+
+the users can enter by paying for a ticket
+
+
+after some time the lottery will execute and draw a winner
+
+using chainlink VRF and chainline automation
+
+ chainlink vrf - randome
+ automation - time based triggers
+ 
