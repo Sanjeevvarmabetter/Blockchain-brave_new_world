@@ -7,3 +7,6 @@
 [submodule "solidity/foundry-lottery/lib/forge-std"]
 	path = solidity/foundry-lottery/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "solidity/foundry-lottery/lib/chainlink-brownie-contracts"]
+	path = solidity/foundry-lottery/lib/chainlink-brownie-contracts
+	url = https://github.com/smartcontractkit/chainlink-brownie-contracts
