@@ -1,0 +1,14 @@
+{
+  "name": "transaction_signature",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ethereumjs-tx": "^2.1.2"
+  }
+}
