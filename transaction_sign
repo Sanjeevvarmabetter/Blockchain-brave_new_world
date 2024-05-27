@@ -1,0 +1,15 @@
+// for signing a transaction folow the below algorithm
+
+
+// create a ds consists of 9 feilds -> nonce,gasPrice,gas LImit, to,value,data,chainId,0,0
+
+
+//produce an rlp-encoded serialized message of the transaction ds
+
+//compute the keccak256 hash of the message
+
+//compute ECDSA signature, signing the hash with the originating eoa private key
+
+//append the ECDSA signature computed v,r,s values to the transaction
+
+

@@ -1,0 +1,11 @@
+{
+  "name": "blockchain-brave_new_world",
+  "version": "1.0.0",
+  "description": "Welcome to the Blockchain Interview Questions Repository! This repository is designed to help individuals who are preparing for interviews related to blockchain technology. Whether you are seeking a job in blockchain development, cryptography, or any other field related to blockchain, these questions and answers will serve as a valuable resource to enhance your preparation.",
+  "main": "transaction_sign.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

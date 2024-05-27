@@ -12,3 +12,18 @@
 
 //sorry switzerland
 
+const sha256 = require("crypto-js/sha256");
+
+
+class Block{
+    constructor(index,timestamp,hash,previous_hash=' ') {
+        this.index = index;
+        this.timestamp = timestamp;
+        this.hash = generateHash();
+        this.previous_hash = previous_hash;
+    }
+
+    computehash() {
+        return sha256(this.index + this.timestamp + this.previous_hash + JSON.stringify(this.hash))
+    }
+}
