@@ -9,6 +9,11 @@
 
 // the seller can only deloply this contra t
 
+// SPDX-License_Identifier:MIT
+
+pragma solidity ^0.8.18;
+
+
 
 interface IERC721 {
 	function safeTransferFrom(address from,address to,uint256 token_id) external;
