@@ -80,6 +80,12 @@ await transaction.wait();
 
 
 
+### generate random wallet
+
+const randomwallet = ethers.wallet.createRandom();
+console.log(randomWallet.address);
+
+	
 
 
 

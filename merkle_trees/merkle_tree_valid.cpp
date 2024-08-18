@@ -19,64 +19,63 @@ this consists of leaves,branch nodes, root node, hashing algorithm
 //           /      \          /      \
 //    Leaf1 Hash  Leaf2 Hash  Leaf3 Hash  Leaf4 Hash
 
-#include<iostream>
-#include<vector>
-#include<string>
-#include<algorithm>
-#include<functionl>
-#include<openssl/sh.h>
+
+#include <iostream>
+#include <vector>
+#include <iomanip>
+#include <sstream>
+#include <openssl/sha.h>
 
 using namespace std;
-//function to build sha256 algorithm
 
+// Function to compute SHA-256 hash
 string sha256(const string &input) {
     unsigned char hash[SHA256_DIGEST_LENGTH];
     SHA256_CTX sha256;
     SHA256_Init(&sha256);
-    SHA256_Update(&sha256, input.c_str(),input.size());
+    SHA256_Update(&sha256, input.c_str(), input.size());
     SHA256_Final(hash, &sha256);
 
-    char hash_hex[2 * SHA256_DIGEST_LENGTH + 1];
-    for(int i=0;i<SHA256_DIGEST_LENGTH;i++) {
-        sprintf(hash_hex + 2 * i, "%02x", hash[i]);
+    stringstream ss;
+    for (int i = 0; i < SHA256_DIGEST_LENGTH; i++) {
+        ss << hex << setw(2) << setfill('0') << (int)hash[i];
     }
-    return hash_hex;
-
+    return ss.str();
 }
 
-vector<string> buildmerkletree(vector<string> &transactions) {
-    vector<string> tree = transaction;
-
+// Function to build the Merkle Tree
+string buildMerkleTree(vector<string> &transactions) {
+    vector<string> tree = transactions;
+    vector<string> intermediate_tree;
+    
+    // Build the tree
     while (tree.size() > 1) {
-        if (tree.size() % 2 != 0) {
-            tree.push_back(tree.back());
-        }
-
-        for(size_t i = 0;i< tree.size(); i+=2) {
-            string combined = tree[i] + tree[i+1];
+        intermediate_tree.clear();
+        for (size_t i = 0; i < tree.size(); i += 2) {
+            string left = tree[i];
+            string right = (i + 1 < tree.size()) ? tree[i + 1] : tree[i];
+            string combined = left + right;
             intermediate_tree.push_back(sha256(combined));
         }
         tree = intermediate_tree;
     }
-    return tree;
+    
+    // The last remaining element in 'tree' is the Merkle Root
+    return tree.empty() ? "" : tree[0];
 }
 
 int main() {
-    vector<string> transaction = {
+    vector<string> transactions = {
         "Txn1",
         "Txn2",
         "Txn3",
         "Txn4"
     };
 
-    vector<string> merkleRoot = buildMerkleTree(transaction);
-    string transactionToValidate = "Txn3";
+    // Compute the Merkle Root
+    string merkleRoot = buildMerkleTree(transactions);
 
-    if(merkleRoot[0] == sha256(transactionToValidate)) {
-        cout << "transaction " << transactionToValidate << " is valid" << endl;
-    }
-    else {
-        cout << "Transaction " << transactionToValidate << " is not valid " << endl;
-    }
+    cout << "Merkle Root: " << merkleRoot << endl;
+
     return 0;
 }
