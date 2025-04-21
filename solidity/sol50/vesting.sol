@@ -16,7 +16,7 @@ Vested Amount=( Total Tokens/duration)×(Current Time−Start Time)
 
 interface IERC20 {
         function transfer(address recipient,uint256 amount) external returns (bool);
-        function balaceOf(address account) external view returns (uint256);
+        function balanceOf(address account) external view returns (uint256);
 }
 
 contract tokenVesting {
@@ -57,7 +57,7 @@ contract tokenVesting {
 
 
     function release() public {
-        uint256 vested = _vestedAmount(block.timestamp)l
+        uint256 vested = _vestedAmount(block.timestamp);    
         uint256 unreleased = vested -  released;
         released = released + unreleased;
                 require(token.transfer(beneficiary, unreleased), "Token transfer failed");
