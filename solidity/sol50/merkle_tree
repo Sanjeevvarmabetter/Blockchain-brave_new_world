@@ -1,0 +1,52 @@
+// A Merkle Tree is a binary tree structure used to:
+
+// Compress data into a single root hash
+
+// Prove the existence of a piece of data (leaf) efficiently
+
+// Provide O(log n) inclusion proofs
+
+//each leaf node is a hash of data
+
+// each parent node is a hash of concatnation of children
+
+     Root
+       /  \
+     H12   H34
+     / \   / \
+   H1 H2 H3 H4
+
+h12 = hash(h1||h2)
+h34 = hash(h3||h4)
+
+You can prove that H1 = hash(D1) is in the tree using only its sibling hashes:
+
+// how to prove h1 is part of the tree
+	// to prove h1 is part of the tree
+	// provide: h1 and h34 , recompute upward to get root,  compare with known root
+
+
+does this looks it scales well , hell yeah
+
+Leaves:
+D1 D2 D3 D4
+
+Hashes:
+H1 = hash(D1)
+H2 = hash(D2)
+H3 = hash(D3)
+H4 = hash(D4)
+
+Tree:
+       Root
+       /   \
+     H12   H34
+     / \   / \
+   H1  H2 H3  H4
+
+To prove D3:
+- Provide H4 and H12
+- Compute H34 = hash(H3 || H4)
+- Compute Root = hash(H12 || H34)
+
+
